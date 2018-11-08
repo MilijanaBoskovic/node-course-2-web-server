@@ -36,9 +36,9 @@ app.use((req,res,next)=>{
   next();
 });
 
-app.use((req,res,next)=>{
-  res.render('maintenance.hbs');
-});
+// app.use((req,res,next)=>{
+//   res.render('maintenance.hbs');
+// });
 app.use(express.static(__dirname+'\\public'));
 
 //fja koja moze da se poziva unutar handlebar templejta
@@ -58,7 +58,11 @@ app.get('/', (req,res)=>{
   welcomeMesage: ':) Welcome :)'
   });
   });
-
+app.get('/projects',(req,res)=>{
+  res.render('projects.hbs',{
+    pageTitle:'Projects page'
+  })
+});
 
 //app.listen-server starts listening, binds app to port of machine and waits for requests
 //app.listen takes second opcional argument-function which will run when server is up
