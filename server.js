@@ -6,6 +6,9 @@
 const express=require('express');
 const hbs=require('hbs');
 const fs=require('fs');
+//process.env - objekat koji cuva nase enviroment variable kao key-value parove
+//heroku ce da postavi port,ali kada bi je pokrenuli lokalno ne bi bio definisan=>postavicemo default vrednost
+const port=process.env.PORT || 3000;
 //new express server app
 var app= express();
 //hbs.registerPartials-takes absolutpath folder where we put hbs partials files
@@ -59,6 +62,10 @@ app.get('/', (req,res)=>{
 
 //app.listen-server starts listening, binds app to port of machine and waits for requests
 //app.listen takes second opcional argument-function which will run when server is up
-app.listen(3000,()=>{
-  console.log('Server is up on port 3000');
+
+//heroku will tell your app which port to use,because that port will change as you deploy your app which means we will use an enviorment variable
+//with enviroment variables heroku can set a variable on operating system,node app can read that variable and use it as a port
+//we can see our enviroment variables with set comand on windows
+app.listen(port,()=>{
+  console.log(`Server is up on port ${port}.`);
 });
